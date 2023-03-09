@@ -1,1 +1,1 @@
-A script that switches the current user to the user betty
+task 0, my name is betty
