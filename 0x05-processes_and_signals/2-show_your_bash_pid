@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# displays lines containing "bash" and extracts the PID of your Bash process.
+# shellcheck disable=SC2009
+
+ps -aux | grep bash
