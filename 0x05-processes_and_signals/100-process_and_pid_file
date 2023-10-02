@@ -13,14 +13,9 @@ sigint_handlerv () {
   echo "Y U no love me?!"
 }
 
-sigquit_handler () {
-  rm -f "$PID_file"
-  exit 0
-}
-
 trap sigterm_handler SIGTERM
 trap sigint_handler SIGINT
-trap sigquit_handler SIGQUIT
+trap sigterm_handler SIGQUIT
 
 echo "$$" > "$PID_file"
 
