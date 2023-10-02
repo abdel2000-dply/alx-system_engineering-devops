@@ -4,7 +4,7 @@
 PID_file="/var/run/myscript.pid"
 
 sigterm_handler () {
-  echo "I hate the kill commande"
+  echo "I hate the kill command"
   rm -f "$PID_file"
   exit 0
 }
