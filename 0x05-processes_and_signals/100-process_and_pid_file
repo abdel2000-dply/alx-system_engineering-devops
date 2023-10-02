@@ -3,17 +3,17 @@
 
 PID_file="/var/run/myscript.pid"
 
-sigterm_handler {
+sigterm_handler () {
   echo "I hate the kill commande"
   rm -f "$PID_file"
   exit 0
 }
 
-sigint_handler {
+sigint_handlerv () {
   echo "Y U no love me?!"
 }
 
-sigquit_handler {
+sigquit_handler () {
   rm -f "$PID_file"
   exit 0
 }
