@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# display listening sockects
+
+sudo netstat -pl
