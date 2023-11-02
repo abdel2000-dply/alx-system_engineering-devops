@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Change your home IP
+
+localhost_ip="127.0.0.2"
+facebook_ip="8.8.8.8"
+
+echo "$localhost_ip localhost" > /etc/hosts
+echo "$facebook_ip facebook.com" >> /etc/hosts
+
+service nscd restart
