@@ -1,4 +1,4 @@
-#!/usr/bin
+#!/usr/bin/env bash
 # transfers a file from our client to a server
 
 if [ "$#" -lt 4 ]; then
