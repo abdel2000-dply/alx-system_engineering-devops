@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Install nginx web server
+# Install nginx web server and redirect.
 sudo apt-get -y update
 sudo apt-get -y install nginx
 echo "Hello World!" > /var/www/html/index.nginx-debian.html
-sudo sed -i "30i location /xwz {\nreturn 404 \"Ceci n'est pas une page\n\n\";\n}\n" /etc/nginx/sites-available/default
+sed -i "30i location /xwz {\nreturn 404 \"Ceci n'est pas une page\n\n\";\n}\n" /etc/nginx/sites-available/default
 service nginx restart
