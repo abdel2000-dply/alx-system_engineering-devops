@@ -11,5 +11,5 @@ sudo sed -i '/^}$/i \ \n\tlocation @404 {return 404 "Ceci n'\''est pas une page\
 sudo sed -i 's/=404/@404/g' $config_path
 
 # Add a custom header to the main location block
-sudo sed -i "0,/location \/ {/s/location \/ {/&\n\t\tadd_header X-Served-By '$HOSTNAME';/" $config_path
+sudo sed -i "0,/location \/ {/s/location \/ {/&\n\t\tadd_header X-Served-By '$(hostname)';/" $config_path
 sudo service nginx restart
