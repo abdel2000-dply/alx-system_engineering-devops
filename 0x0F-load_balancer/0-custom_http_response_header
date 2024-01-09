@@ -1,12 +1,6 @@
 #!/usr/bin/env bash
 # Install nginx web server and redirect and more
-sudo apt-get update -y
+udo apt-get update -y
 sudo apt-get install nginx -y
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
-config_path="/etc/nginx/sites-available/default"
-sudo sed -i "30i location /redirect_me {\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}\n" $config_path
-sudo sed -i '/^}$/i \ \n\tlocation @404 {return 404 "Ceci n'\''est pas une page\\n";}' $config_path
-sudo sed -i 's/=404/@404/g' $config_path
-# Add a custom header to the main location block
-sudo sed -i "0,/location \/ {/s/location \/ {/&\n\t\tadd_header X-Served-By '$(hostname)';/" $config_path
+sudo sed -r -i "/^\s+server_name .+;/a\ \\tadd_header X-Served-By \$HOSTNAME\;\n" /etc/nginx/sites-available/default
 sudo service nginx restart
