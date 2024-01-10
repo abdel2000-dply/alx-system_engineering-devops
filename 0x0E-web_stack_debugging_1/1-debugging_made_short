@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Make it sweet and short
+sudo sed -i 's/sites-enabled/sites-available/g' "/etc/nginx/nginx.conf"
+sudo kill -HUP "$(pgrep -f 'nginx: master')"
