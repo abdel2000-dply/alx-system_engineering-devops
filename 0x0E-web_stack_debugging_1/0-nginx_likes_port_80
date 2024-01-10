@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# fix nginx web server
+
+sudo sed -i 's/sites-enabled/sites-available/g' "/etc/nginx/nginx.conf";
+sudo service nginx restart
