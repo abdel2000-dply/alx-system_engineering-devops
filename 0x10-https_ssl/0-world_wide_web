@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+#  Bash script that will display information about subdomains
+
+display_info() {
+	local domain=$1
+	local subdomain=$2
+
+	if [[ -n $subdomain ]]; then
+		echo -n "The subdomain $subdomain is a A record and points to "
+		des=$(dig +short "$subdomain.$domain" | awk '{print $1}')
+		echo "$des"
+	fi
+}
+
+if [[ $# -eq 1 ]]; then
+	for subdomain in www lb-01 web-01 web-02; do
+		display_info "$1" "$subdomain"
+	done
+elif [[ $# -eq 2 ]]; then
+	display_info "$1" "$2"
+else
+	echo "Usage: $0 domain [subdomain]"
+	exit 1
+fi
