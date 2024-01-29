@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ Gather data from an API, and export to CSV format"""
+import csv
 import requests
 from sys import argv
-import csv
 
 
 def todo_progress(user_id):
