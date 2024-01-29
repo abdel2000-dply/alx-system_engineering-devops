@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
 """ Gather data from an API """
 import requests
+import json
 from sys import argv
 
 
@@ -17,9 +17,22 @@ def todo_progress(user_id):
     total_tasks = len(todos)
     completed_tasks = sum(todo['completed'] for todo in todos)
 
+    json_file = f'{user_id}.json'
+
     print("Employee {} is done with tasks({}/{}):".format(
         info['name'], completed_tasks, total_tasks
     ))
+
+    data = {
+        str(user_id): [
+            {"task": todo['title'], "completed": todo['completed'],
+                "username": info['username']}
+            for todo in todos
+        ]
+    }
+
+    with open(json_file, mode='w', encoding='utf-8') as file:
+        json.dump(data, file)
 
     for todo in todos:
         if todo['completed']:
