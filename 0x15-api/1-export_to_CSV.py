@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
-""" Gather data from an API """
+""" Gather data from an API, and export to CSV format"""
 import requests
 from sys import argv
+import csv
 
 
 def todo_progress(user_id):
@@ -21,9 +21,19 @@ def todo_progress(user_id):
         info['name'], completed_tasks, total_tasks
     ))
 
-    for todo in todos:
-        if todo['completed']:
-            print(f"    {todo['title']}")
+    csv_file = f'{user_id}.csv'
+    with open(csv_file, mode='w') as file:
+        writer = csv.writer(file)
+        writer.writerow(
+            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+
+        for todo in todos:
+            writer.writerow(
+                    [user_id, info['username'],
+                    str(todo['completed']), todo['title']]
+            )
+            if todo['completed']:
+                print(f"\t {todo['title']}")
 
 
 if __name__ == "__main__":
