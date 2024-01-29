@@ -28,10 +28,10 @@ def todo_progress(user_id):
             ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
         for todo in todos:
-            writer.writerow(
-                    [user_id, info['username'],
-                    str(todo['completed']), todo['title']]
-            )
+            writer.writerow([
+                    user_id, info['username'],
+                    str(todo['completed']), todo['title']
+            ])
             if todo['completed']:
                 print(f"\t {todo['title']}")
 
