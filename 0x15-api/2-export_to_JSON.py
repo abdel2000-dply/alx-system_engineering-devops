@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """ Gather data from an API """
-import requests
-from sys import argv
 import json
+from sys import argv
+import requests
 
 
 def todo_progress(user_id):
