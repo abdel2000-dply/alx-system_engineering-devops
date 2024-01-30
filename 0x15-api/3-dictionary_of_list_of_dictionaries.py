@@ -19,6 +19,15 @@ if __name__ == "__main__":
         user_id = task['userId']
         username = next(
             user['username'] for user in users_data if user['id'] == user_id)
+        """
+        instead of generator expression:
+
+        username = None
+        for user in users_data:
+            if user['id'] == user_id:
+                username = user['username']
+                break
+        """
 
         if user_id not in user_tasks:
             user_tasks[user_id] = []
