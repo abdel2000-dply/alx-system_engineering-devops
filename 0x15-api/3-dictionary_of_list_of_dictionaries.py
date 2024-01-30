@@ -4,41 +4,31 @@ import json
 import requests
 
 
-def fetch_todo_data():
-    """ Fetches todo data """
-    url = "https://jsonplaceholder.typicode.com/todos"
-    response = requests.get(url)
-    return response.json()
-
-
-def organize_data(todo_data):
-    """Organizes todo data based on user IDs."""
-    organized_data = {}
-    for task in todo_data:
-        user_id = task['userId']
-        if user_id not in organized_data:
-            organized_data[user_id] = []
-        organized_data[user_id].append({
-            "username": task['title'],
-            "task": task['title'],
-            "completed": task['completed']
-        })
-    return organized_data
-
-
-def export_to_json(organized_data):
-    """Exports organized data to a JSON file."""
-    filename = "todo_all_employees.json"
-    with open(filename, 'w') as json_file:
-        json.dump(organized_data, json_file)
-
-
-def main():
-    """Main function to fetch, organize, and export data."""
-    todo_data = fetch_todo_data()
-    organized_data = organize_data(todo_data)
-    export_to_json(organized_data)
-
-
 if __name__ == "__main__":
-    main()
+    users_url = "https://jsonplaceholder.typicode.com/users"
+    users_response = requests.get(users_url)
+    users_data = users_response.json()
+
+    tasks_url = "https://jsonplaceholder.typicode.com/todos"
+    tasks_response = requests.get(tasks_url)
+    tasks_data = tasks_response.json()
+
+    user_tasks = {}
+
+    for task in tasks_data:
+        user_id = task['userId']
+        username = next(user['username'] for user in users_data if user['id'] == user_id)
+
+        if user_id not in user_tasks:
+            user_tasks[user_id] = []
+
+        task_info = {
+            "username": username,
+            "task": task["title"],
+            "completed": task["completed"]
+        }
+
+        user_tasks[user_id].append(task_info)
+
+    with open("todo_all_employees.json", "w") as json_file:
+        json.dump(user_tasks, json_file)
