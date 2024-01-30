@@ -17,7 +17,8 @@ if __name__ == "__main__":
 
     for task in tasks_data:
         user_id = task['userId']
-        username = next(user['username'] for user in users_data if user['id'] == user_id)
+        username = next(
+            user['username'] for user in users_data if user['id'] == user_id)
 
         if user_id not in user_tasks:
             user_tasks[user_id] = []
