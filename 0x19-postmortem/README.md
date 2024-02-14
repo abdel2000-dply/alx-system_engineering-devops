@@ -59,7 +59,9 @@
 
 We are committed to providing a seamless shopping experience for our customers, especially during critical periods.
 
+[Read the incident report on Medium](https://techwispers.medium.com/unplanned-downtime-during-peak-shopping-season-9bafa01f0e83).
+
 Sincerely,
-	Abdellah Abnoune
-	Full-stack developer
+Abdellah Abnoune.
+Full-stack developer.
 
