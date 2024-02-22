@@ -6,6 +6,6 @@ file { '/etc/default/nginx':
 }
 
 exec { 'restart_nginx':
-  command     => 'service nginx restart',
+  command  => 'service nginx restart',
   provider => 'shell',
 }
